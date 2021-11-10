@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Qytap-Backend.iml" filepath="$PROJECT_DIR$/.idea/Qytap-Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Qytap-mobile-application.iml" filepath="$PROJECT_DIR$/.idea/Qytap-mobile-application.iml" />
     </modules>
   </component>
 </project>
