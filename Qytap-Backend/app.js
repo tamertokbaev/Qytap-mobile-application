@@ -1,3 +1,5 @@
+require("dotenv").config()
+require("./config/database").connect();
 const createError = require('http-errors');
 const express = require('express');
 const http = require('http')
@@ -6,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug')('qytap-backend:server');
 
+const authRouter = require("./routes/auth")
 const indexRouter = require('./routes/index');
 const booksRouter = require('./routes/books')
 
@@ -23,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/auth', authRouter)
 app.use('/', indexRouter);
 app.use('/books', booksRouter)
 
