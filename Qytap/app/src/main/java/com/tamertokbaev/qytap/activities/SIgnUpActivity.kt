@@ -3,20 +3,18 @@ package com.tamertokbaev.qytap.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.tamertokbaev.qytap.R
 
-class SignInActivity : AppCompatActivity(){
-
+class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.sign_in)
+        setContentView(R.layout.register)
     }
 
-    fun onClickSingUpLink(view: View){
-        val link = findViewById<TextView>(R.id.signUpLink)
-        val intent = Intent(this, SignUpActivity::class.java)
+
+    fun onCliCkSignInLink(view: View) {
+        val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
     }
 }
