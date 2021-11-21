@@ -11,7 +11,7 @@ class GetStartedActivity : AppCompatActivity() {
     // This piece of code is responsible for running mobile program
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_welcome)
     }
 
     fun onClickGetStartedButton(view: View){

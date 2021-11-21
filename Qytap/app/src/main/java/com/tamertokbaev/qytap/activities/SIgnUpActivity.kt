@@ -9,7 +9,7 @@ import com.tamertokbaev.qytap.R
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.register)
+        setContentView(R.layout.activity_register)
     }
 
 

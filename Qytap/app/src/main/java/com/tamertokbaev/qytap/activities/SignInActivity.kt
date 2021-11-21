@@ -11,7 +11,7 @@ class SignInActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.sign_in)
+        setContentView(R.layout.activity_sign_in)
     }
 
     fun onClickSingUpLink(view: View){
