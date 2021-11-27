@@ -25,10 +25,8 @@ class HomeActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
         val navigationView: BottomNavigationView = findViewById(R.id.navigation)
-        navigationView.setOnNavigationItemSelectedListener(navMenuSelectedListener)
+
     }
 
-    val navMenuSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener(){
-        true
-    }
+
 }
