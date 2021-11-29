@@ -15,15 +15,15 @@ class DBManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
 
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE IF NOT EXISTS $USERS_TABLE (\n" +
-                "\tid int PRIMARY KEY,\n" +
-                "\tfullName VARCHAR NOT NULL,\n" +
-                "\temail VARCHAR NOT NULL,\n" +
+                "\tid INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "\tfullName TEXT NOT NULL,\n" +
+                "\temail TEXT NOT NULL UNIQUE,\n" +
                 "\tbirthdate DATE DEFAULT NULL,\n" +
-                "\tpassword VARCHAR NOT NULL,\n" +
-                "\tbalance DOUBLE DEFAULT 0,\t\n" +
-                "\tlastLogin TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n" +
-                "\tcreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n" +
-                "\tdeletedAt TIMESTAMP DEFAULT NULL\n" +
+                "\tpassword TEXT NOT NULL,\n" +
+                "\tbalance REAL DEFAULT 0,\t\n" +
+                "\tlastLogin TEXT,\n" +
+                "\tcreatedAt TEXT,\n" +
+                "\tdeletedAt TEXT DEFAULT NULL\n" +
                 ");"
         db?.execSQL(createTable)
     }
