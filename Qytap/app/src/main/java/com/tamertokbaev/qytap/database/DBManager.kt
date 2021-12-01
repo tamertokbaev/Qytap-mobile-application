@@ -1,7 +1,10 @@
 package com.tamertokbaev.qytap.database
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.tamertokbaev.qytap.models.User
@@ -54,8 +57,22 @@ class DBManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
     }
 
     // Authenticating User
-    fun checkCredentialsUser(){
-
+    @SuppressLint("Recycle", "Range")
+    fun checkCredentialsUser(email: String, password: String): Boolean{
+        val db = this.readableDatabase
+        val query = "SELECT password FROM $USERS_TABLE WHERE email='$email'"
+        var cursor: Cursor?
+        try {
+            cursor = db.rawQuery(query, null)
+        }catch (e: SQLException){
+            db.execSQL(query)
+            return false
+        }
+        if(cursor.moveToFirst()){
+            val userRealPassword = cursor.getString(cursor.getColumnIndex("password"))
+            if(userRealPassword == password) return true
+        }
+        return false
     }
 
     // Get User data
