@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.database.DBManager
 
@@ -20,6 +21,9 @@ class SignInActivity : AppCompatActivity(){
         val emailEditText                = findViewById<EditText>(R.id.signin_email)
         val passwordEditText             = findViewById<EditText>(R.id.signin_password)
 
+        val emailInputLayout             = findViewById<TextInputLayout>(R.id.signin_email_error)
+        val passwordInputLayout             = findViewById<TextInputLayout>(R.id.signin_password_error)
+
         val email                        = emailEditText.text.toString()
         val password                     = passwordEditText.text.toString()
 
@@ -32,6 +36,8 @@ class SignInActivity : AppCompatActivity(){
             startActivity(intent)
         }
         else{
+            emailInputLayout.setError("Email or password is incorrect")
+            passwordInputLayout.setError("Email or password is incorrect")
             // Clear text and provide some error message to user
             emailEditText.text.clear()
             passwordEditText.text.clear()

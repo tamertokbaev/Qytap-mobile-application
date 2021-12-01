@@ -56,28 +56,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
-
-        <EditText
-            android:id="@+id/signin_email"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signin_email_error"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_input"
-            android:backgroundTint="@color/white"
-            android:hint="Enter your email"
-            android:inputType="textEmailAddress"
-            android:padding="15dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <EditText
+                android:id="@+id/signin_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_input"
+                android:backgroundTint="@color/white"
+                android:hint="Enter your email"
+                android:inputType="textEmailAddress"
+                android:padding="15dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/signin_password"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signin_password_error"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_input"
-            android:backgroundTint="@color/white"
-            android:hint="Enter password"
-            android:inputType="textPassword"
-            android:padding="15dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/signin_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_input"
+                android:backgroundTint="@color/white"
+                android:hint="Enter password"
+                android:inputType="textPassword"
+                android:padding="15dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button"
