@@ -34,6 +34,7 @@ class SignInActivity : AppCompatActivity(){
             // Change activity on successful registration
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
         else{
             emailInputLayout.setError("Email or password is incorrect")

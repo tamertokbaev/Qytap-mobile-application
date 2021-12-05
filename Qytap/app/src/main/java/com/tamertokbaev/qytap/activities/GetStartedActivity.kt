@@ -18,5 +18,6 @@ class GetStartedActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.getStarted)
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

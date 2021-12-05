@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import okhttp3.*
+import java.io.IOException
+import java.lang.Exception
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,8 +23,11 @@ class CatalogFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val client = OkHttpClient()
+    private val BASE_URL = "https://tamertokbaev.kz/api"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        fetchBooksForCatalogFragment()
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -35,6 +41,26 @@ class CatalogFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_catalog, container, false)
+    }
+
+    // This function is used for fetching books from tamertokbaev.kz backend for fragment called "Catalog"
+    private fun fetchBooksForCatalogFragment(){
+        val request = Request.Builder()
+            .url("$BASE_URL/books")
+            .build()
+
+        var responseJson : String? = null
+        var errorResponse : Exception? = null
+        client.newCall(request).enqueue(object: Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                errorResponse = e
+            }
+            override fun onResponse(call: Call, response: Response) {
+                responseJson = response.body()?.string()
+            }
+        })
+        println(errorResponse)
+        println(responseJson)
     }
 
     companion object {
