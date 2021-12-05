@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.GsonBuilder
+import io.ktor.util.reflect.*
 import okhttp3.*
 import java.io.IOException
 import java.lang.Exception
@@ -27,7 +29,10 @@ class CatalogFragment : Fragment() {
     private val BASE_URL = "https://tamertokbaev.kz/api"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        fetchBooksForCatalogFragment()
+        val response = fetchBooksForCatalogFragment()
+        val gson = GsonBuilder()
+        val books =
+
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -44,7 +49,7 @@ class CatalogFragment : Fragment() {
     }
 
     // This function is used for fetching books from tamertokbaev.kz backend for fragment called "Catalog"
-    private fun fetchBooksForCatalogFragment(){
+    private fun fetchBooksForCatalogFragment(): String? {
         val request = Request.Builder()
             .url("$BASE_URL/books")
             .build()
@@ -59,8 +64,7 @@ class CatalogFragment : Fragment() {
                 responseJson = response.body()?.string()
             }
         })
-        println(errorResponse)
-        println(responseJson)
+        return responseJson
     }
 
     companion object {
