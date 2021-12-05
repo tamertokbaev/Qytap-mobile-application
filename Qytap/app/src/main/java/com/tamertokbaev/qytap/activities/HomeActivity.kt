@@ -1,14 +1,14 @@
 package com.tamertokbaev.qytap.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tamertokbaev.qytap.R
 import okhttp3.*
-import java.io.IOException
-import java.lang.Exception
 
 class HomeActivity : AppCompatActivity(){
     private val client = OkHttpClient()
@@ -24,23 +24,9 @@ class HomeActivity : AppCompatActivity(){
         navigationView.setupWithNavController(navController)
     }
 
-    // This function is used for fetching books from tamertokbaev.kz backend for fragment called "Catalog"
-    private fun fetchBooksForCatalogFragment(){
-        val request = Request.Builder()
-            .url("$BASE_URL/books")
-            .build()
-
-        var responseJson : String? = null
-        var errorResponse : Exception? = null
-        client.newCall(request).enqueue(object: Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                errorResponse = e
-            }
-            override fun onResponse(call: Call, response: Response) {
-                responseJson = response.body()?.string()
-            }
-        })
-        println(errorResponse)
-        println(responseJson)
+    fun signOut(view: View){
+        val intent = Intent(this, SignInActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
