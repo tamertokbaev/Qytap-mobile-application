@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.database.DBManager
 import com.tamertokbaev.qytap.models.User
@@ -35,6 +36,31 @@ class SignUpActivity : AppCompatActivity() {
         val passwordConfirmation         = passwordConfirmationEditText.text.toString()
 
         val dbManager: DBManager = DBManager(this)
+
+        val fullNameInputLayout          = findViewById<TextInputLayout>(R.id.fullNameError)
+        val emailInputLayout             = findViewById<TextInputLayout>(R.id.emailError)
+        val passwordInputLayout          = findViewById<TextInputLayout>(R.id.passwordError)
+        val passwordConfirmInputLayout    = findViewById<TextInputLayout>(R.id.passwordConfirmationError)
+
+        if(email.isEmpty()) emailInputLayout.setError("Email field cannot be empty")
+        else emailInputLayout.setError(null)
+
+        if(fullName.isEmpty()) fullNameInputLayout.setError("Full Name field cannot be empty")
+        else fullNameInputLayout.setError(null)
+
+        if(password.isEmpty()) passwordInputLayout.setError("Full Name field cannot be empty")
+        else passwordInputLayout.setError(null)
+
+        if(password != passwordConfirmation) {
+            passwordInputLayout.setError("Passwords do not match!")
+            passwordConfirmInputLayout.setError("Passwords do not match!")
+        }
+        else{
+            passwordInputLayout.setError(null)
+            passwordConfirmInputLayout.setError(null)
+        }
+        if(password.length <= 6) passwordInputLayout.setError("Password length should by more than 6")
+        else passwordInputLayout.setError(null)
 
         // TODO add validation
         // We pass null as a first parameter, because ID field will be automatically auto-incremented
