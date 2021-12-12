@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface BookFetchService {
     @GET("books")
-    fun getFeaturedBooks() : Call<List<BookResponse>>
+    fun getFeaturedBooks() : Call<BookResponse>
 }

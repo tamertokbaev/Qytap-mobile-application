@@ -1,11 +1,20 @@
 package com.tamertokbaev.qytap
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
+import com.tamertokbaev.qytap.helpers.BooksAdapter
+import com.tamertokbaev.qytap.models.Book
+import com.tamertokbaev.qytap.models.BookResponse
+import com.tamertokbaev.qytap.services.BookFetchService
+import com.tamertokbaev.qytap.services.ServiceBuilder
 import io.ktor.util.reflect.*
 import okhttp3.*
 import java.io.IOException
@@ -27,12 +36,9 @@ class CatalogFragment : Fragment() {
     private var param2: String? = null
     private val client = OkHttpClient()
     private val BASE_URL = "https://tamertokbaev.kz/api"
+    private var catalog_recycler: RecyclerView? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val response = fetchBooksForCatalogFragment()
-        val gson = GsonBuilder()
-        val books =
-
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -44,8 +50,11 @@ class CatalogFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_catalog, container, false)
+        catalog_recycler = rootView.findViewById(R.id.catalog_recycler)
+        fetchBooks()
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_catalog, container, false)
+        return rootView
     }
 
     // This function is used for fetching books from tamertokbaev.kz backend for fragment called "Catalog"
@@ -65,6 +74,32 @@ class CatalogFragment : Fragment() {
             }
         })
         return responseJson
+    }
+
+    // The most actual now!!
+    fun fetchBooks(){
+        //initiate the service
+        val destinationService = ServiceBuilder.buildService(BookFetchService::class.java)
+        val requestCall = destinationService.getFeaturedBooks()
+        //make network call asynchronously
+        requestCall.enqueue(object : retrofit2.Callback<BookResponse> {
+            override fun onResponse(call: retrofit2.Call<BookResponse>, response: retrofit2.Response<BookResponse>) {
+                Log.d("Response", "onResponse: ${response.body()}")
+                if (response.isSuccessful){
+                    val books = response.body()!!
+                    catalog_recycler?.apply {
+                        setHasFixedSize(true)
+                        layoutManager = GridLayoutManager(requireContext(),1)
+                        adapter = BooksAdapter(response.body()!!)
+                    }
+                }else{
+                    Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<BookResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     companion object {
