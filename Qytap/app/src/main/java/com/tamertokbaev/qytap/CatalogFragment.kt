@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.GsonBuilder
 import com.tamertokbaev.qytap.helpers.BooksAdapter
-import com.tamertokbaev.qytap.models.Book
 import com.tamertokbaev.qytap.models.BookResponse
 import com.tamertokbaev.qytap.services.BookFetchService
 import com.tamertokbaev.qytap.services.ServiceBuilder
-import io.ktor.util.reflect.*
 import okhttp3.*
 import java.io.IOException
 import java.lang.Exception
@@ -93,10 +90,12 @@ class CatalogFragment : Fragment() {
                         adapter = BooksAdapter(response.body()!!)
                     }
                 }else{
+                    Log.d("Request error", response.message())
                     Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: retrofit2.Call<BookResponse>, t: Throwable) {
+                Log.d("Exception", "Occurred exception: ${t}")
                 Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
             }
         })

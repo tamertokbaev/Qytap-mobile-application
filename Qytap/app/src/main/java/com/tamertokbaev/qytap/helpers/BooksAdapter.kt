@@ -34,9 +34,9 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
 
         // Binding fetched data to UI components from our fragment item!
         fun bind(book: Book) {
-            title.text          = book.bookTitle
-            itemGenre.text      = book.genre1
-            publishDate.text    = book.publishDate
+            title.text          = book.book_title
+            itemGenre.text      = book.genre_1
+            publishDate.text    = book.publish_date
         }
     }
 }
