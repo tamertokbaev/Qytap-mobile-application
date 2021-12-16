@@ -4,8 +4,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.models.Book
 import com.tamertokbaev.qytap.models.BookResponse
@@ -32,6 +34,7 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
         var itemGenre   = itemView.findViewById<TextView>(R.id.book_item_genre)
         var rating      = itemView.findViewById<TextView>(R.id.book_item_rating)
         var downloads   = itemView.findViewById<TextView>(R.id.book_item_downloads)
+        var imageBook   = itemView.findViewById<ImageView>(R.id.book_item_image)
 
         // Binding fetched data to UI components from our fragment item!
         fun bind(book: Book) {
@@ -39,6 +42,7 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
             itemGenre.text      = book.category
             rating.text         = book.book_depository_stars.toString()
             downloads.text      = book.downloads.toString()
+            Picasso.get().load(book.image).into(imageBook)
         }
     }
 }
