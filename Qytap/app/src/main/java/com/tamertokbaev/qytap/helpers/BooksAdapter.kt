@@ -30,13 +30,15 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
     class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
         var title       = itemView.findViewById<TextView>(R.id.book_item_title)
         var itemGenre   = itemView.findViewById<TextView>(R.id.book_item_genre)
-        var publishDate = itemView.findViewById<TextView>(R.id.book_item_publish_date)
+        var rating      = itemView.findViewById<TextView>(R.id.book_item_rating)
+        var downloads   = itemView.findViewById<TextView>(R.id.book_item_downloads)
 
         // Binding fetched data to UI components from our fragment item!
         fun bind(book: Book) {
-            title.text          = book.book_title
-            itemGenre.text      = book.genre_1
-            publishDate.text    = book.publish_date
+            title.text          = book.name
+            itemGenre.text      = book.category
+            rating.text         = book.book_depository_stars.toString()
+            downloads.text      = book.downloads.toString()
         }
     }
 }

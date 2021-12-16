@@ -47,7 +47,12 @@
                 app:layout_constraintTop_toTopOf="@+id/book_item_title"
                 app:layout_constraintStart_toStartOf="parent" />
             <TextView
-                android:id="@+id/book_item_publish_date"
+                android:id="@+id/book_item_downloads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/book_item_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@+id/book_item_genre"
