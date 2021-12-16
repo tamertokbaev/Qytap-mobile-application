@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.models.Book
@@ -31,8 +33,8 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
 
     class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
         var title       = itemView.findViewById<TextView>(R.id.book_item_title)
-        var itemGenre   = itemView.findViewById<TextView>(R.id.book_item_genre)
-        var rating      = itemView.findViewById<TextView>(R.id.book_item_rating)
+        var itemGenre   = itemView.findViewById<Chip>(R.id.book_item_genre)
+        var rating      = itemView.findViewById<RatingBar>(R.id.book_item_rating)
         var downloads   = itemView.findViewById<TextView>(R.id.book_item_downloads)
         var imageBook   = itemView.findViewById<ImageView>(R.id.book_item_image)
 
@@ -40,7 +42,7 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
         fun bind(book: Book) {
             title.text          = book.name
             itemGenre.text      = book.category
-            rating.text         = book.book_depository_stars.toString()
+            rating.rating       = book.book_depository_stars!!
             downloads.text      = book.downloads.toString()
             Picasso.get().load(book.image).into(imageBook)
         }

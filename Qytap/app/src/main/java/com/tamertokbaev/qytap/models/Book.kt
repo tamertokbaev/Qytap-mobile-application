@@ -2,7 +2,7 @@ package com.tamertokbaev.qytap.models
 
 data class Book(
     val author: String?,
-    val book_depository_stars: Double?,
+    val book_depository_stars: Float?,
     val category: String?,
     val created_at: String?,
     val currency: String?,

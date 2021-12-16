@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Qytap" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Qytap" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#50C2C9</item>
         <item name="colorPrimaryVariant">#727272</item>
@@ -15,9 +15,18 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Input">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="fontWeight">400</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="TextHeader">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="fontWeight">800</item>
     </style>
 
     <style name="AccountUsername">
@@ -35,6 +44,15 @@
         <item name="backgroundTint">@color/color_primary</item>
         <item name="android:textColor">#fff</item>
         <item name="android:textSize">16sp</item>
+    </style>
 
+    <style name="BookNameCatalog">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontWeight">900</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:lines">2</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

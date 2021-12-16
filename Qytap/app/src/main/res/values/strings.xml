@@ -7,4 +7,6 @@
     <string name="home_account_more">More</string>
     <string name="home_account_sign_out">Sign out</string>
     <string name="hello_blank_fragment">Empty</string>
+    <string name="downloads_catalog">Downloads:</string>
+    <string name="rating_catalog">Rating:</string>
 </resources>

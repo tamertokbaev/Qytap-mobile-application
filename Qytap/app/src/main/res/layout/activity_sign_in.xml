@@ -23,7 +23,9 @@
         android:layout_marginTop="30dp"
         android:text="Welcome Back!"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:textFontWeight="600"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,21 +110,25 @@
 
     <LinearLayout
         android:id="@+id/linearHelper"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/formLayoutContainer">
+        app:layout_constraintTop_toBottomOf="@+id/formLayoutContainer"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account?"
-            android:textAlignment="center"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins"
+            android:textFontWeight="400"
+            android:textColor="@color/black"
+            android:layout_marginRight="5dp"/>
 
         <TextView
             android:id="@+id/signUpLink"
@@ -130,8 +136,10 @@
             android:layout_height="wrap_content"
             android:onClick="onClickSingUpLink"
             android:text="Sign up"
-            android:textAlignment="center"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textColor="@color/design_default_color_secondary"
+            android:fontFamily="@font/poppins"
+            android:textFontWeight="700"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

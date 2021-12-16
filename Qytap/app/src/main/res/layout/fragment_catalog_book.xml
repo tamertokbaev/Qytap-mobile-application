@@ -10,7 +10,7 @@
         android:id="@+id/card_view_support_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="140dp"
+        android:minHeight="160dp"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/book_item_image"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
@@ -32,44 +32,75 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:minHeight="140dp"
-            android:layout_marginStart="150dp">
+            android:minHeight="160dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
             <TextView
                 android:id="@+id/book_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/BookNameCatalog"/>
+            <com.google.android.material.chip.Chip
                 android:id="@+id/book_item_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/book_item_title"
+                android:checkable="false"
+                app:chipBackgroundColor="#F8D577"
+                android:textColor="#9b7308"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins"
                 app:layout_constraintStart_toStartOf="parent" />
-            <TextView
-                android:id="@+id/book_item_downloads"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/book_item_downloads_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/book_item_genre"
-                app:layout_constraintStart_toStartOf="parent"/>
-            <TextView
-                android:id="@+id/book_item_rating"
-                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/book_item_genre"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/downloads_catalog"
+                    android:fontFamily="@font/poppins"/>
+                <TextView
+                    android:id="@+id/book_item_downloads"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_alignParentEnd="true"
+                    android:textAlignment="viewStart"
+                    android:fontFamily="@font/poppins"
+                    android:textFontWeight="500"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/book_item_rating_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/book_item_downloads"
-                app:layout_constraintStart_toStartOf="parent" />
-            <Button
-                android:id="@+id/book_item_more"
-                style="@style/AccountButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="90dp"
-                android:layout_marginBottom="10dp"
-                android:width="120dp"
-                android:text="@string/home_account_more"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/book_item_downloads_layout"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rating_catalog"
+                    android:fontFamily="@font/poppins"/>
+                <RatingBar
+                    android:id="@+id/book_item_rating"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:rating="0"
+                    android:numStars="5"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:progressTint="#F8D577"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

@@ -17,13 +17,15 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
         android:layout_marginTop="30dp"
         android:text="Welcome Qytap!"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:textFontWeight="600"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,15 +33,17 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="97dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="98dp"
+        android:textAlignment="center"
         android:text="Please complete each field to register"
         android:textSize="13sp"
+        android:textFontWeight="400"
+        android:fontFamily="@font/poppins"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <LinearLayout
@@ -66,8 +70,8 @@
                 android:layout_height="50dp"
                 android:hint="Enter your full name"
                 android:inputType="text"
-                android:padding="15dp"
-                android:background="@drawable/custom_input" />
+                android:background="@drawable/custom_input"
+                style="@style/Input"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,8 +85,8 @@
                 android:backgroundTint="@color/white"
                 android:hint="Enter your email"
                 android:inputType="textEmailAddress"
-                android:padding="15dp"
-                android:background="@drawable/custom_input"/>
+                android:background="@drawable/custom_input"
+                style="@style/Input"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -96,8 +100,8 @@
                 android:backgroundTint="@color/white"
                 android:hint="Enter password"
                 android:inputType="textPassword"
-                android:padding="15dp"
-                android:background="@drawable/custom_input"/>
+                android:background="@drawable/custom_input"
+                style="@style/Input"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -111,8 +115,8 @@
                 android:backgroundTint="@color/white"
                 android:hint="Confirm password"
                 android:inputType="textPassword"
-                android:padding="15dp"
-                android:background="@drawable/custom_input" />
+                android:background="@drawable/custom_input"
+                style="@style/Input"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -120,7 +124,9 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:textStyle="bold"
+            android:textFontWeight="600"
+            android:fontFamily="@font/poppins"
+            android:textSize="14sp"
             android:backgroundTint="#50C2C9"
             android:text="Register"
             android:textColor="#FFFFFF"
@@ -148,7 +154,10 @@
             android:text="Already have an account? Sign In"
             android:textAlignment="center"
             android:textSize="13sp"
-            android:onClick="onCliCkSignInLink"/>
+            android:fontFamily="@font/poppins"
+            android:textFontWeight="400"
+            android:onClick="onCliCkSignInLink"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
