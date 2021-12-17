@@ -1,16 +1,15 @@
 package com.tamertokbaev.qytap.services
 
+import com.tamertokbaev.qytap.globals.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
-    private const val URL ="https://tamertokbaev.kz/api/"
-
     private val okHttp = OkHttpClient.Builder()
 
     //retrofit builder
-    private val builder = Retrofit.Builder().baseUrl(URL)
+    private val builder = Retrofit.Builder().baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttp.build())
 

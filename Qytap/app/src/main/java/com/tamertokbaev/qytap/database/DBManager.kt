@@ -7,7 +7,7 @@ import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.tamertokbaev.qytap.models.User
+import com.tamertokbaev.qytap.models.UserDB
 
 class DBManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null, DATABASE_VERSION) {
     companion object{
@@ -42,13 +42,13 @@ class DBManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
     // TODO 29.11.2021
 
     // Adding new User
-    fun addNewUser(user: User):Long {
+    fun addNewUser(userDB: UserDB):Long {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("id", user.id)
-        contentValues.put("fullName", user.fullName)
-        contentValues.put("email", user.email)
-        contentValues.put("password", user.password)
+        contentValues.put("id", userDB.id)
+        contentValues.put("fullName", userDB.fullName)
+        contentValues.put("email", userDB.email)
+        contentValues.put("password", userDB.password)
 
         // Inserting row and preparing SQL query
         val success = db.insert(USERS_TABLE, null, contentValues)

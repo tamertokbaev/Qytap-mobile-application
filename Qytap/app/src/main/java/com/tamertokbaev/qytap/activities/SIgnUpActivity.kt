@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.database.DBManager
-import com.tamertokbaev.qytap.models.User
+import com.tamertokbaev.qytap.models.UserDB
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // TODO add validation
         // We pass null as a first parameter, because ID field will be automatically auto-incremented
-        val statusOfExecutedQuery = dbManager.addNewUser(User(null, fullName, email, password))
+        val statusOfExecutedQuery = dbManager.addNewUser(UserDB(null, fullName, email, password))
         if(statusOfExecutedQuery > -1){
             fullNameEditText.text.clear()
             emailEditText.text.clear()

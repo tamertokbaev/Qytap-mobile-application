@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Qytap">
 
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".activities.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.SignInActivity"/>
+<!--        <activity android:name=".activities.SignInActivity"/>-->
         <activity android:name=".activities.SignUpActivity"/>
-<!--        <activity android:name=".activities.HomeActivity"/>-->
+        <activity android:name=".activities.HomeActivity"/>
     </application>
 </manifest>
