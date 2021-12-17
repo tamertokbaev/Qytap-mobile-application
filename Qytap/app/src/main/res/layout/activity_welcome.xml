@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".activities.GetStartedActivity"
-    tools:visibility="visible">
+    tools:visibility="visible"
+    android:background="@color/backgroundGray">
 
     <ImageView
         android:id="@+id/imageView"

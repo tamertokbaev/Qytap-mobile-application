@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundGray">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -62,17 +63,21 @@
             android:id="@+id/signin_email_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:id="@+id/signin_email"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
                 android:backgroundTint="@color/white"
                 android:hint="Enter your email"
                 android:inputType="textEmailAddress"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:fontFamily="@font/poppins"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,17 +85,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:id="@+id/signin_password"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
                 android:backgroundTint="@color/white"
                 android:hint="Enter password"
                 android:inputType="textPassword"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:fontFamily="@font/poppins"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

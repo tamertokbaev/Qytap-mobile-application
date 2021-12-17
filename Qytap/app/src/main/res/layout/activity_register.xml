@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundGray">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -19,51 +20,47 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:text="Welcome Qytap!"
         android:textSize="18sp"
         android:fontFamily="@font/poppins"
         android:textFontWeight="600"
         android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="center"
         android:text="Please complete each field to register"
         android:textSize="13sp"
         android:textFontWeight="400"
         android:fontFamily="@font/poppins"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/textView3"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <LinearLayout
         android:id="@+id/formLayoutContainer"
-        android:layout_width="409dp"
-        android:layout_height="370dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintBottom_toTopOf="@+id/register_link_layout"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fullNameError"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:id="@+id/fullName"
                 android:layout_width="match_parent"
@@ -71,13 +68,17 @@
                 android:hint="Enter your full name"
                 android:inputType="text"
                 android:background="@drawable/custom_input"
-                style="@style/Input"/>
+                style="@style/Input"
+                android:autofillHints="fullName"
+                android:fontFamily="@font/poppins"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailError"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="5dp">
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -86,13 +87,17 @@
                 android:hint="Enter your email"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/custom_input"
-                style="@style/Input"/>
+                style="@style/Input"
+                android:fontFamily="@font/poppins"
+                android:autofillHints="emailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordError"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
@@ -101,13 +106,16 @@
                 android:hint="Enter password"
                 android:inputType="textPassword"
                 android:background="@drawable/custom_input"
-                style="@style/Input"/>
+                style="@style/Input"
+                android:fontFamily="@font/poppins"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordConfirmationError"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:id="@+id/passwordConfirmation"
                 android:layout_width="match_parent"
@@ -116,7 +124,8 @@
                 android:hint="Confirm password"
                 android:inputType="textPassword"
                 android:background="@drawable/custom_input"
-                style="@style/Input"/>
+                style="@style/Input"
+                android:fontFamily="@font/poppins"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -138,6 +147,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/register_link_layout"
         android:layout_width="409dp"
         android:layout_height="67dp"
         android:orientation="vertical"
