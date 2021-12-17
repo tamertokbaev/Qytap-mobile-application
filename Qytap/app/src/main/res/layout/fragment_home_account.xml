@@ -3,64 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_home_account_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_primary"
+    android:orientation="vertical"
+    android:paddingBottom="20dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_support_card"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_shape_light"/>
+
+    <RelativeLayout
+        android:id="@+id/home_avatar_relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="140dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:layout_marginTop="90dp">
         <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="142dp"
-            android:layout_height="140dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/ic_male" />
+    </RelativeLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:minHeight="140dp"
-            android:layout_marginStart="150dp">
+    <TextView
+        android:id="@+id/home_welcome_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_avatar_relative"
+        android:textColor="@color/white"
+        android:text="@string/home_welcome_text"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textFontWeight="600"
+        android:layout_marginTop="10dp" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/home_account_username"
-                style="@style/AccountUsername"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/home_account_email"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView12" />
-
-            <Button
-                android:id="@+id/button2"
-                style="@style/AccountButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="90dp"
-                android:layout_marginBottom="10dp"
-                android:width="120dp"
-                android:text="@string/home_account_more"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

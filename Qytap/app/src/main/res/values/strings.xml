@@ -9,4 +9,5 @@
     <string name="hello_blank_fragment">Empty</string>
     <string name="downloads_catalog">Downloads:</string>
     <string name="rating_catalog">Rating:</string>
+    <string name="home_welcome_text">Welcome, Tamerlan Tokbayev</string>
 </resources>

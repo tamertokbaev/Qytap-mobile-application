@@ -17,6 +17,7 @@
     </style>
 
     <color name="backgroundGray">#E5E5E5</color>
+    <color name="colorPrimaryLight">#ADD2D4</color>
 
     <style name="Input">
         <item name="fontFamily">@font/poppins</item>
