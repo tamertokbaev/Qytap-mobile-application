@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
@@ -31,7 +32,7 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
         return bookList.booksFeatured.size
     }
 
-    class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var title       = itemView.findViewById<TextView>(R.id.book_item_title)
         var itemGenre   = itemView.findViewById<Chip>(R.id.book_item_genre)
         var rating      = itemView.findViewById<RatingBar>(R.id.book_item_rating)
@@ -45,6 +46,12 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
             rating.rating       = book.book_depository_stars!!
             downloads.text      = book.downloads.toString()
             Picasso.get().load(book.image).into(imageBook)
+
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(view: View) {
+            Navigation.findNavController(view).navigate(R.id.action_book_inner)
         }
     }
 }

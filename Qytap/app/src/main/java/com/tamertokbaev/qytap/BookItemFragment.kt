@@ -20,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [BookItemFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookItemFragment: Fragment(), View.OnClickListener {
+class BookItemFragment: Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,18 +39,10 @@ class BookItemFragment: Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_book_item, container, false)
-        val navController = Navigation.findNavController(rootView)
-        val cardView = rootView.findViewById<CardView>(R.id.card_view_support_card)
-        cardView.setOnClickListener(this)
         // Inflate the layout for this fragment
         return rootView
     }
 
-    @Override
-    override fun onClick(view: View){
-        Log.d("Info", "Clicked button more")
-        Navigation.findNavController(view).navigate(R.id.action_book_more)
-    }
 
     companion object {
         /**

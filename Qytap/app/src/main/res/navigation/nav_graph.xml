@@ -10,6 +10,9 @@
         android:name="com.tamertokbaev.qytap.CatalogFragment"
         android:label="fragment_catalog"
         tools:layout="@layout/fragment_catalog">
+        <action
+            android:id="@+id/action_book_inner"
+            app:destination="@id/navigation_book_inner"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_books"
@@ -27,9 +30,9 @@
         android:name="com.tamertokbaev.qytap.BookItemFragment"
         android:label="fragment_book_item"
         tools:layout="@layout/fragment_book_item">
-        <action
-            android:id="@+id/action_book_more"
-            app:destination="@id/navigation_book_inner"/>
+<!--        <action-->
+<!--            android:id="@+id/action_book_more"-->
+<!--            app:destination="@id/navigation_book_inner"/>-->
     </fragment>
 
     <fragment
