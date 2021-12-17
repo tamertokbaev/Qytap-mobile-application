@@ -1,5 +1,6 @@
 package com.tamertokbaev.qytap.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.database.DBManager
+import com.tamertokbaev.qytap.globals.Constants
 
 class SignInActivity : AppCompatActivity(){
 
@@ -31,6 +33,15 @@ class SignInActivity : AppCompatActivity(){
         val statusOfExecutedQuery = dbManager.checkCredentialsUser(email, password)
 
         if(statusOfExecutedQuery){
+
+            // Shared preferences is used to store some state globally inside application
+            // In this case, I'm going to store user data globally, so I can then get in in any activity I need
+            val sharedPreferences = getSharedPreferences(Constants.APP_SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply{
+                putString(Constants.APP_SHARED_USER_EMAIL_KEY, email)
+            }.apply()
+
             // Change activity on successful registration
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)

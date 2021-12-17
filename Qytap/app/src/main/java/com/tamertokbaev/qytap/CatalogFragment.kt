@@ -54,26 +54,6 @@ class CatalogFragment : Fragment() {
         return rootView
     }
 
-    // This function is used for fetching books from tamertokbaev.kz backend for fragment called "Catalog"
-    private fun fetchBooksForCatalogFragment(): String? {
-        val request = Request.Builder()
-            .url("$BASE_URL/books")
-            .build()
-
-        var responseJson : String? = null
-        var errorResponse : Exception? = null
-        client.newCall(request).enqueue(object: Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                errorResponse = e
-            }
-            override fun onResponse(call: Call, response: Response) {
-                responseJson = response.body()?.string()
-            }
-        })
-        return responseJson
-    }
-
-    // The most actual now!!
     fun fetchBooks(){
         //initiate the service
         val destinationService = ServiceBuilder.buildService(BookFetchService::class.java)

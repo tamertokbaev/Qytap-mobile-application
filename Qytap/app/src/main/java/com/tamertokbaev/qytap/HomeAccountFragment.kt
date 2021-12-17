@@ -1,10 +1,13 @@
 package com.tamertokbaev.qytap
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.tamertokbaev.qytap.globals.Constants
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +36,15 @@ class HomeAccountFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        getUserDataFromGlobalStore()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_account, container, false)
+    }
+
+    private fun getUserDataFromGlobalStore() {
+        val sharedPreferences = activity?.getSharedPreferences(Constants.APP_SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val email: String? = sharedPreferences?.getString(Constants.APP_SHARED_USER_EMAIL_KEY, "Empty email")
+        Toast.makeText(requireContext(), email, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
