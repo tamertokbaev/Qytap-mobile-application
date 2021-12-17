@@ -1,10 +1,14 @@
 package com.tamertokbaev.qytap
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.tamertokbaev.qytap.globals.Constants
+import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +37,20 @@ class HomeInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_home_info, container, false)
+
+        val nameTextView = rootView.findViewById<TextView>(R.id.full_name_info)
+        val emailTextView = rootView.findViewById<TextView>(R.id.email_info)
+
+        val sharedPreferences = activity?.getSharedPreferences(Constants.APP_SHARED_PREF_NAME, Context.MODE_PRIVATE)
+
+        val email: String? = sharedPreferences?.getString(Constants.APP_SHARED_USER_EMAIL_KEY, "Empty email")
+        val name: String? = sharedPreferences?.getString(Constants.APP_SHARED_USER_NAME_KEY, "Empty name")
+
+        nameTextView.text = name
+        emailTextView.text = email
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_info, container, false)
+        return rootView
     }
 
     companion object {

@@ -74,9 +74,9 @@ class SignInActivity : AppCompatActivity() {
                     }
                 } else {
                     Log.d("Request error", response.message())
+                    emailInputLayout.setError("Email or password is incorrect")
+                    passwordInputLayout.setError("Email or password is incorrect")
                 }
-                emailInputLayout.setError("Email or password is incorrect")
-                passwordInputLayout.setError("Email or password is incorrect")
             }
 
             override fun onFailure(call: retrofit2.Call<AuthResponse>, t: Throwable) {
