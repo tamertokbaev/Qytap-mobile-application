@@ -9,7 +9,8 @@
         android:id="@+id/navigation_catalog"
         android:name="com.tamertokbaev.qytap.CatalogFragment"
         android:label="fragment_catalog"
-        tools:layout="@layout/fragment_catalog" />
+        tools:layout="@layout/fragment_catalog">
+    </fragment>
     <fragment
         android:id="@+id/navigation_books"
         android:name="com.tamertokbaev.qytap.MyBooksFragment"
@@ -20,4 +21,21 @@
         android:name="com.tamertokbaev.qytap.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_book_item"
+        android:name="com.tamertokbaev.qytap.BookItemFragment"
+        android:label="fragment_book_item"
+        tools:layout="@layout/fragment_book_item">
+        <action
+            android:id="@+id/action_book_more"
+            app:destination="@id/navigation_book_inner"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_book_inner"
+        android:name="com.tamertokbaev.qytap.BookInnerFragment"
+        android:label="fragment_book_inner"
+        tools:layout="@layout/fragment_book_inner" />
+
 </navigation>

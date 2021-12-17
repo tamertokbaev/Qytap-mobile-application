@@ -17,7 +17,7 @@ import com.tamertokbaev.qytap.models.BookResponse
 class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view  = LayoutInflater.from(parent.context).inflate(R.layout.fragment_catalog_book,parent,false)
+        val view  = LayoutInflater.from(parent.context).inflate(R.layout.fragment_book_item,parent,false)
         return ViewHolder(view)
     }
 
