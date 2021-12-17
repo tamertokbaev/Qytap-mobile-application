@@ -2,13 +2,19 @@ package com.tamertokbaev.qytap.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.database.DBManager
+import com.tamertokbaev.qytap.models.AuthResponse
+import com.tamertokbaev.qytap.models.User
 import com.tamertokbaev.qytap.models.UserDB
+import com.tamertokbaev.qytap.services.AuthService
+import com.tamertokbaev.qytap.services.ServiceBuilder
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +41,6 @@ class SignUpActivity : AppCompatActivity() {
         val password                     = passwordEditText.text.toString()
         val passwordConfirmation         = passwordConfirmationEditText.text.toString()
 
-        val dbManager: DBManager = DBManager(this)
-
         val fullNameInputLayout          = findViewById<TextInputLayout>(R.id.fullNameError)
         val emailInputLayout             = findViewById<TextInputLayout>(R.id.emailError)
         val passwordInputLayout          = findViewById<TextInputLayout>(R.id.passwordError)
@@ -62,14 +66,39 @@ class SignUpActivity : AppCompatActivity() {
         if(password.length <= 6) passwordInputLayout.setError("Password length should by more than 6")
         else passwordInputLayout.setError(null)
 
-        // TODO add validation
-        // We pass null as a first parameter, because ID field will be automatically auto-incremented
-        val statusOfExecutedQuery = dbManager.addNewUser(UserDB(null, fullName, email, password))
-        if(statusOfExecutedQuery > -1){
-            fullNameEditText.text.clear()
-            emailEditText.text.clear()
-            passwordEditText.text.clear()
-            passwordConfirmationEditText.text.clear()
+//        // We pass null as a first parameter, because ID field will be automatically auto-incremented
+//        val statusOfExecutedQuery = dbManager.addNewUser(UserDB(null, fullName, email, password))
+//        if(statusOfExecutedQuery > -1){
+//            fullNameEditText.text.clear()
+//            emailEditText.text.clear()
+//            passwordEditText.text.clear()
+//            passwordConfirmationEditText.text.clear()
+//        }
+
+        if(fullNameInputLayout.error == null &&
+            emailInputLayout.error == null &&
+            passwordInputLayout.error == null &&
+            passwordConfirmInputLayout.error == null){
+            val destinationService = ServiceBuilder.buildService(AuthService::class.java)
+            val requestCall = destinationService.signUp(User(name = fullName, email = email, password = password))
+            requestCall.enqueue(object : retrofit2.Callback<AuthResponse> {
+                override fun onResponse(call: retrofit2.Call<AuthResponse>, response: retrofit2.Response<AuthResponse>) {
+                    Log.d("Response", "onResponse: ${response.body()}")
+                    if (response.isSuccessful){
+                        // Change activity on successful sign in
+                        val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }else{
+                        Log.d("Request error", response.message())
+                        Toast.makeText(this@SignUpActivity, response.message(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onFailure(call: retrofit2.Call<AuthResponse>, t: Throwable) {
+                    Log.d("Exception", "Occurred exception: ${t}")
+                    Toast.makeText(this@SignUpActivity, "Something went wrong $t", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }

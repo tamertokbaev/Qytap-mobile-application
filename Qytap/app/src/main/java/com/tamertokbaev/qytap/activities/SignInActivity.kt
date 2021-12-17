@@ -37,7 +37,6 @@ class SignInActivity : AppCompatActivity(){
 
         val destinationService = ServiceBuilder.buildService(AuthService::class.java)
         val requestCall = destinationService.signIn(User(name = null, email = email, password = password))
-        Log.d("Tag", "Before function call")
         requestCall.enqueue(object : retrofit2.Callback<AuthResponse> {
             override fun onResponse(call: retrofit2.Call<AuthResponse>, response: retrofit2.Response<AuthResponse>) {
                 Log.d("Response", "onResponse: ${response.body()}")
