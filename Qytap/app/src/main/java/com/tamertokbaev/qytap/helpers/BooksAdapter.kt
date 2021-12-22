@@ -1,5 +1,6 @@
 package com.tamertokbaev.qytap.helpers
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.R
 import com.tamertokbaev.qytap.activities.HomeActivity
+import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.models.Book
 import com.tamertokbaev.qytap.models.BookResponse
 
@@ -48,8 +50,25 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
             Picasso.get().load(book.image).into(imageBook)
 
             itemView.setOnClickListener {
-                val parentActivity = itemView.context as HomeActivity
-                parentActivity.sendBookInformationToDetailsFragment(book)
+                itemView.context
+                    .getSharedPreferences(
+                        Constants.APP_SHARED_PREF_NAME,
+                        Context.MODE_PRIVATE
+                    )
+                    .edit()
+                    .apply{
+                        putInt(Constants.APP_SHARED_BOOK_ID_KEY, book.id!!)
+                        putString(Constants.APP_SHARED_BOOK_NAME_KEY, book.name.toString())
+                        putString(Constants.APP_SHARED_BOOK_AUTHOR_KEY, book.author.toString())
+                        putString(Constants.APP_SHARED_BOOK_FORMAT_KEY, book.format.toString())
+                        putFloat(Constants.APP_SHARED_BOOK_RATING_KEY, book.book_depository_stars)
+                        putFloat(Constants.APP_SHARED_BOOK_PRICE_KEY, book.price!!.toFloat())
+                        putString(Constants.APP_SHARED_BOOK_CURRENCY_KEY, book.currency.toString())
+                        putString(Constants.APP_SHARED_BOOK_CATEGORY_KEY, book.category.toString())
+                        putString(Constants.APP_SHARED_BOOK_IMAGE_KEY, book.image.toString())
+                        putInt(Constants.APP_SHARED_BOOK_DOWNLOADS_KEY, book.downloads!!)
+                    }
+                    .apply()
                 Navigation.findNavController(itemView).navigate(R.id.action_book_inner)
             }
         }

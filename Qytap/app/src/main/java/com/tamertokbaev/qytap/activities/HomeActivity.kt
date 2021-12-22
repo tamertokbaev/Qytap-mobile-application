@@ -28,17 +28,9 @@ class HomeActivity : AppCompatActivity(){
         navigationView.setupWithNavController(navController)
     }
 
-    fun signOut(view: View){
+    fun signOut(view: View) {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    fun sendBookInformationToDetailsFragment(book: Book){
-        val bookInnerFragment = supportFragmentManager
-            .findFragmentById(R.id.navigation_book_inner)
-        Log.d("priv",bookInnerFragment.toString())
-
-//        bookInnerFragment.getBookInformationFromBookListFragment(book)
     }
 }

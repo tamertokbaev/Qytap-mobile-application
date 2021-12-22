@@ -15,9 +15,9 @@
             android:layout_height="wrap_content"
             android:background="@color/color_primary"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingBottom="20dp">
             <ImageView
-                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
@@ -33,11 +33,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="90dp">
+
                 <ImageView
+                    android:id="@+id/book_image_inner_view"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/ic_book_blue"
-                    android:contentDescription="Book title" />
+                    android:contentDescription="Book title"
+                    android:src="@drawable/ic_book_blue" />
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -63,12 +65,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/book_author_inner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Author:"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/book_author_inner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Adam Kay"
@@ -82,12 +84,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/book_price_inner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Price:"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/book_price_inner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="300$"
@@ -107,7 +109,7 @@
                     android:fontFamily="@font/poppins"
                     android:textSize="16sp"/>
                 <RatingBar
-                    android:id="@+id/book_item_rating"
+                    android:id="@+id/book_rating_inner"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:isIndicator="true"
@@ -128,6 +130,7 @@
                     android:fontFamily="@font/poppins"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/book_type_inner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Handbook"

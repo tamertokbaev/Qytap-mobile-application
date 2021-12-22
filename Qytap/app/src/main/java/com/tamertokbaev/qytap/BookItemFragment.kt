@@ -21,17 +21,8 @@ class BookItemFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("12345", view?.tag.toString())
         val rootView = inflater.inflate(R.layout.fragment_book_item, container, false)
         // Inflate the layout for this fragment
         return rootView
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("123", view.tag.toString())
-    }
-
-    fun getBookInformationFromBookListFragment(book: Book){
-        Log.d("Book details: ", book.toString())
     }
 }
