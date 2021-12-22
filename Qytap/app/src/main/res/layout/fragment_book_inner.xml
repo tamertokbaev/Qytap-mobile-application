@@ -147,12 +147,38 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textFontWeight="600"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem"/>
+                android:text="@string/lorem" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:textColor="@color/color_primary"
+                    android:textSize="18sp"
+                    android:textFontWeight="800"
+                    android:text="Buy"
+                    android:textAlignment="viewStart"
+                    android:drawableLeft="@drawable/ic_buy"
+                    android:drawableTint="@color/color_primary"
+                    app:cornerRadius="20dp" />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:drawableLeft="@drawable/ic_heart_outlined"
+                    android:drawableTint="@color/color_primary"
+                    app:cornerRadius="60dp"/>
 
-
+            </RelativeLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
