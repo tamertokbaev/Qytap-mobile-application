@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.R
+import com.tamertokbaev.qytap.activities.HomeActivity
 import com.tamertokbaev.qytap.models.Book
 import com.tamertokbaev.qytap.models.BookResponse
 
@@ -24,7 +25,6 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d("Response", "Books count: ${bookList.booksFeatured.size}. Books: ${bookList.booksFeatured}")
-
         holder.bind(bookList.booksFeatured[position])
     }
 
@@ -32,26 +32,27 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
         return bookList.booksFeatured.size
     }
 
-    class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var title       = itemView.findViewById<TextView>(R.id.book_item_title)
-        var itemGenre   = itemView.findViewById<Chip>(R.id.book_item_genre)
-        var rating      = itemView.findViewById<RatingBar>(R.id.book_item_rating)
-        var downloads   = itemView.findViewById<TextView>(R.id.book_item_downloads)
-        var imageBook   = itemView.findViewById<ImageView>(R.id.book_item_image)
+    class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
+        var title = itemView.findViewById<TextView>(R.id.book_item_title)
+        var itemGenre = itemView.findViewById<Chip>(R.id.book_item_genre)
+        var rating = itemView.findViewById<RatingBar>(R.id.book_item_rating)
+        var downloads = itemView.findViewById<TextView>(R.id.book_item_downloads)
+        var imageBook = itemView.findViewById<ImageView>(R.id.book_item_image)
 
         // Binding fetched data to UI components from our fragment item!
         fun bind(book: Book) {
-            title.text          = book.name
-            itemGenre.text      = book.category
-            rating.rating       = book.book_depository_stars!!
-            downloads.text      = book.downloads.toString()
+            title.text = book.name
+            itemGenre.text = book.category
+            rating.rating = book.book_depository_stars!!
+            downloads.text = book.downloads.toString()
             Picasso.get().load(book.image).into(imageBook)
 
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(view: View) {
-            Navigation.findNavController(view).navigate(R.id.action_book_inner)
+            itemView.setOnClickListener {
+                val parentActivity = itemView.context as HomeActivity
+                parentActivity.sendBookInformationToDetailsFragment(book)
+                Navigation.findNavController(itemView).navigate(R.id.action_book_inner)
+            }
         }
     }
 }
+

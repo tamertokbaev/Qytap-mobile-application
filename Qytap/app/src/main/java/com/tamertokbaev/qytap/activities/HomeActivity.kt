@@ -2,17 +2,21 @@ package com.tamertokbaev.qytap.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.tamertokbaev.qytap.BookInnerFragment
+import com.tamertokbaev.qytap.BookItemFragment
 import com.tamertokbaev.qytap.R
+import com.tamertokbaev.qytap.models.Book
+import io.ktor.util.reflect.*
 import okhttp3.*
+import kotlin.reflect.typeOf
 
 class HomeActivity : AppCompatActivity(){
-    private val client = OkHttpClient()
-    private val BASE_URL = "https://tamertokbaev.kz/api"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +32,13 @@ class HomeActivity : AppCompatActivity(){
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun sendBookInformationToDetailsFragment(book: Book){
+        val bookInnerFragment = supportFragmentManager
+            .findFragmentById(R.id.navigation_book_inner)
+        Log.d("priv",bookInnerFragment.toString())
+
+//        bookInnerFragment.getBookInformationFromBookListFragment(book)
     }
 }

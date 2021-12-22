@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundGray">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/catalog_header_constraint"
             android:layout_width="match_parent"
@@ -56,14 +55,19 @@
                     android:drawablePadding="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/catalog_recycler"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/search_catalog_main"
-            android:layout_margin="16dp"
-            android:layout_marginBottom="0dp"/>
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/catalog_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="0dp"/>
+        </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
