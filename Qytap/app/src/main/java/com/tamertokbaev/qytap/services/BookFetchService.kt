@@ -12,4 +12,7 @@ interface BookFetchService {
 
     @GET("books/owned")
     fun getOwnedBooks(@Query("token") token: String): Call<BookOwnedResponse>
+
+    @GET("books/search")
+    fun searchBooks(@Query("slug") slug: String): Call<BookResponse>
 }
