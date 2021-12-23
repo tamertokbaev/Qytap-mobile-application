@@ -48,7 +48,7 @@ class CatalogFragment : Fragment() {
                     catalog_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(requireContext(),1)
-                        adapter = BooksAdapter(response.body()!!)
+                        adapter = BooksAdapter(response.body()!!.booksFeatured)
                     }
                 }else{
                     Log.d("Request error", response.message())

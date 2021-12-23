@@ -18,7 +18,7 @@ import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.models.Book
 import com.tamertokbaev.qytap.models.BookResponse
 
-class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
+class BooksAdapter(private val bookList: ArrayList<Book>): RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view  = LayoutInflater.from(parent.context).inflate(R.layout.fragment_book_item,parent,false)
@@ -26,12 +26,11 @@ class BooksAdapter(private val bookList: BookResponse): RecyclerView.Adapter<Boo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("Response", "Books count: ${bookList.booksFeatured.size}. Books: ${bookList.booksFeatured}")
-        holder.bind(bookList.booksFeatured[position])
+        holder.bind(bookList[position])
     }
 
     override fun getItemCount(): Int {
-        return bookList.booksFeatured.size
+        return bookList.size
     }
 
     class ViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
