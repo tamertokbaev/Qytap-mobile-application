@@ -147,7 +147,7 @@ class BookInnerFragment : Fragment() {
                 if (response.isSuccessful){
                     if(response.body()?.message == "success"){
                         fetchStatusOfBook()
-                        Toast.makeText(requireContext(), "Congrats! You've been purchased this book", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "You've been purchased this book", Toast.LENGTH_LONG).show()
                     }
                     else{
                         Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_LONG).show()
