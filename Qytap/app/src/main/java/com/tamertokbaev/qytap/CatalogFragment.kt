@@ -18,6 +18,7 @@ import com.tamertokbaev.qytap.services.ServiceBuilder
 import android.text.Editable
 
 import android.text.TextWatcher
+import android.widget.TextView
 import java.util.Timer
 import java.util.TimerTask
 
@@ -112,12 +113,14 @@ class CatalogFragment : Fragment() {
             override fun onResponse(call: retrofit2.Call<BookResponse>, response: retrofit2.Response<BookResponse>) {
                 Log.d("Response", "onResponse: ${response.body()}")
                 if (response.isSuccessful){
-                    val books = response.body()!!
+                    val books = response.body()!!.booksFeatured
                     catalog_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(requireContext(),1)
-                        adapter = BooksAdapter(response.body()!!.booksFeatured)
+                        adapter = BooksAdapter(books)
                     }
+                    if(books.size == 0) view?.findViewById<TextView>(R.id.catalog_search_empty)?.visibility = View.VISIBLE
+                    else view?.findViewById<TextView>(R.id.catalog_search_empty)?.visibility = View.GONE
                 }else{
                     Log.d("Request error", response.message())
                     Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()

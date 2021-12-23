@@ -67,7 +67,9 @@ class MyBooksFragment : Fragment() {
                             adapter = BooksAdapter(response.body()!!.fav!!)
                         }
                         if(response.body()!!.bought!!.size == 0) view?.findViewById<TextView>(R.id.my_books_bought_empty)?.visibility = View.VISIBLE
+                        else view?.findViewById<TextView>(R.id.my_books_bought_empty)?.visibility = View.GONE
                         if(response.body()!!.fav!!.size == 0) view?.findViewById<TextView>(R.id.my_books_favourites_empty)?.visibility = View.VISIBLE
+                        else view?.findViewById<TextView>(R.id.my_books_favourites_empty)?.visibility = View.GONE
                     }
                     else Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
                 }else{
