@@ -18,10 +18,7 @@ import com.google.android.material.button.MaterialButton
 import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.helpers.BooksAdapter
-import com.tamertokbaev.qytap.models.Book
-import com.tamertokbaev.qytap.models.BookManipulation
-import com.tamertokbaev.qytap.models.BookResponse
-import com.tamertokbaev.qytap.models.Message
+import com.tamertokbaev.qytap.models.*
 import com.tamertokbaev.qytap.services.BookFetchService
 import com.tamertokbaev.qytap.services.BookManipulationService
 import com.tamertokbaev.qytap.services.ServiceBuilder
@@ -78,13 +75,7 @@ class BookInnerFragment : Fragment() {
         )
         this.bearerToken = preferences.getString(Constants.APP_SHARED_USER_TOKEN_KEY, "")
 
-        addBookToFav.setOnClickListener {
-            addBookToFavourites()
-        }
 
-        bookBuy.setOnClickListener{
-            addBookToCart()
-        }
 
         // Setting up our text views with data come from preferences
 
@@ -94,6 +85,16 @@ class BookInnerFragment : Fragment() {
         ratingBar.rating    = this.book?.book_depository_stars!!
         typeTextView.text   = this.book?.category
         Picasso.get().load(this.book?.image).into(imageView)
+
+        fetchStatusOfBook()
+
+        addBookToFav.setOnClickListener {
+            addBookToFavourites()
+        }
+
+        bookBuy.setOnClickListener{
+            addBookToCart()
+        }
         navigateBackListener(view)
     }
 
@@ -111,8 +112,13 @@ class BookInnerFragment : Fragment() {
             override fun onResponse(call: retrofit2.Call<Message>, response: retrofit2.Response<Message>) {
                 Log.d("Response", "onResponse: ${response.body()}")
                 if (response.isSuccessful){
-                    if(response.body()?.message == "success"){
-                        Toast.makeText(requireContext(), "Your book successfully added in favourites", Toast.LENGTH_LONG).show()
+                    if(response.body()?.message == "added"){
+                        fetchStatusOfBook()
+                        Toast.makeText(requireContext(), "Book added to favourite list", Toast.LENGTH_LONG).show()
+                    }
+                    else if(response.body()?.message == "removed"){
+                        fetchStatusOfBook()
+                        Toast.makeText(requireContext(), "Book removed from favourite list", Toast.LENGTH_LONG).show()
                     }
                     else{
                         Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_LONG).show()
@@ -140,6 +146,7 @@ class BookInnerFragment : Fragment() {
                 Log.d("Used token","$token $bookId")
                 if (response.isSuccessful){
                     if(response.body()?.message == "success"){
+                        fetchStatusOfBook()
                         Toast.makeText(requireContext(), "Congrats! You've been purchased this book", Toast.LENGTH_LONG).show()
                     }
                     else{
@@ -151,6 +158,43 @@ class BookInnerFragment : Fragment() {
                 }
             }
             override fun onFailure(call: retrofit2.Call<Message>, t: Throwable) {
+                Log.d("Exception", "Occurred exception: ${t}")
+                Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun fetchStatusOfBook(){
+        val requestCall = destinationService.status(this.bearerToken, this.book?.id!!)
+        val buyButton = view?.findViewById<MaterialButton>(R.id.buy_btn)
+        val favButton = view?.findViewById<MaterialButton>(R.id.add_to_fav_btn)
+
+        requestCall.enqueue(object: retrofit2.Callback<BookStatusResponse>{
+            override fun onResponse(call: retrofit2.Call<BookStatusResponse>, response: retrofit2.Response<BookStatusResponse>) {
+                Log.d("Response", "onResponse: ${response.body()}")
+                if (response.isSuccessful){
+                    if(response.body()?.message == "success"){
+                        if(response.body()?.bookBoughtStatus == true) {
+                            buyButton?.text = "Bought"
+                            buyButton?.isEnabled = false
+                        }
+
+                        if(response.body()?.bookFavStatus == true) {
+                            favButton?.text = "Remove"
+                        }
+                        else{
+                            favButton?.text = "Add to favs"
+                        }
+                    }
+                    else{
+                        Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Log.d("Request error", response.message())
+                    Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<BookStatusResponse>, t: Throwable) {
                 Log.d("Exception", "Occurred exception: ${t}")
                 Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
             }

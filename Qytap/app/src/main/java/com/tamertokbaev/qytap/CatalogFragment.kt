@@ -13,9 +13,6 @@ import com.tamertokbaev.qytap.helpers.BooksAdapter
 import com.tamertokbaev.qytap.models.BookResponse
 import com.tamertokbaev.qytap.services.BookFetchService
 import com.tamertokbaev.qytap.services.ServiceBuilder
-import okhttp3.*
-import java.io.IOException
-import java.lang.Exception
 
 class CatalogFragment : Fragment() {
     private var catalog_recycler: RecyclerView? = null;
@@ -28,11 +25,14 @@ class CatalogFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_catalog, container, false)
-        catalog_recycler = rootView.findViewById(R.id.catalog_recycler)
-        fetchBooks()
         // Inflate the layout for this fragment
-        return rootView
+        return inflater.inflate(R.layout.fragment_catalog, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        catalog_recycler = view.findViewById(R.id.catalog_recycler)
+        fetchBooks()
     }
 
     private fun fetchBooks(){
