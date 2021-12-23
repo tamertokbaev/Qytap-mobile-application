@@ -52,6 +52,28 @@
             android:paddingEnd="20dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:contentPaddingLeft="15dp"
+                app:contentPaddingRight="15dp"
+                app:contentPaddingTop="8dp"
+                app:contentPaddingBottom="8dp">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/navigate_back"
+                    android:text="Return back"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textFontWeight="600"
+                    app:drawableLeftCompat="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableTint="@color/color_primary"/>
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/book_title_inner"
                 android:layout_width="match_parent"
@@ -60,7 +82,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textFontWeight="600"/>
+                android:textFontWeight="600"
+                android:layout_marginTop="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

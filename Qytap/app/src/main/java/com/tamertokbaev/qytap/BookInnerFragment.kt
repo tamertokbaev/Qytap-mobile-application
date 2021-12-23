@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.models.Book
@@ -68,5 +69,13 @@ class BookInnerFragment : Fragment() {
         ratingBar.rating    = book.book_depository_stars!!
         typeTextView.text   = book.category
         Picasso.get().load(book.image).into(imageView)
+        navigateBackListener(view)
+    }
+
+    private fun navigateBackListener(view: View) {
+        val navigateBack = view.findViewById<TextView>(R.id.navigate_back)
+        navigateBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

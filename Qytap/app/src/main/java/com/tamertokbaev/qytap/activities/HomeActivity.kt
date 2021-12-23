@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tamertokbaev.qytap.BookInnerFragment
@@ -15,6 +16,7 @@ import com.tamertokbaev.qytap.models.Book
 import io.ktor.util.reflect.*
 import okhttp3.*
 import kotlin.reflect.typeOf
+
 
 class HomeActivity : AppCompatActivity(){
 
@@ -33,4 +35,6 @@ class HomeActivity : AppCompatActivity(){
         startActivity(intent)
         finish()
     }
+
+
 }
