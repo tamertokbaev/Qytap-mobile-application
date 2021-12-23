@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -60,11 +61,13 @@ class MyBooksFragment : Fragment() {
                             layoutManager = GridLayoutManager(requireContext(),1)
                             adapter = BooksAdapter(response.body()!!.bought!!)
                         }
-                        recyclerViewBought.apply {
+                        recyclerViewFav.apply {
                             setHasFixedSize(true)
                             layoutManager = GridLayoutManager(requireContext(),1)
                             adapter = BooksAdapter(response.body()!!.fav!!)
                         }
+                        if(response.body()!!.bought!!.size == 0) view?.findViewById<TextView>(R.id.my_books_bought_empty)?.visibility = View.VISIBLE
+                        if(response.body()!!.fav!!.size == 0) view?.findViewById<TextView>(R.id.my_books_favourites_empty)?.visibility = View.VISIBLE
                     }
                     else Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
                 }else{

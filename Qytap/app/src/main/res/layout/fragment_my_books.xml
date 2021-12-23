@@ -28,6 +28,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"/>
         <TextView
+            android:id="@+id/my_books_bought_empty"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:text="You have not purchased any books yet"
+            android:visibility="gone"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Favourites"
@@ -39,6 +47,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/my_books_favourites_empty"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:text="You have not added books to favourites"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </FrameLayout>
