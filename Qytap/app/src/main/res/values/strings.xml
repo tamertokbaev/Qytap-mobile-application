@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Qytap</string>
     <string name="catalog_header">Catalog</string>
+    <string name="my_books_header">My books</string>
     <string name="home_header">Home</string>
     <string name="home_account_username">Tamerlan Tokbayev</string>
     <string name="home_account_email">tokbaev201536@gmail.com</string>
