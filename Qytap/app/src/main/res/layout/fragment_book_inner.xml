@@ -59,7 +59,8 @@
                 app:contentPaddingLeft="15dp"
                 app:contentPaddingRight="15dp"
                 app:contentPaddingTop="8dp"
-                app:contentPaddingBottom="8dp">
+                app:contentPaddingBottom="8dp"
+                android:backgroundTint="@color/backgroundGray">
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -181,6 +182,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buy_btn"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimaryLight"
@@ -193,13 +195,15 @@
                     android:drawableTint="@color/color_primary"
                     app:cornerRadius="20dp" />
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_to_fav_btn"
                     android:layout_width="55dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:backgroundTint="@color/colorPrimaryLight"
                     android:drawableLeft="@drawable/ic_heart_outlined"
                     android:drawableTint="@color/color_primary"
-                    app:cornerRadius="60dp"/>
+                    app:cornerRadius="60dp"
+                    />
 
             </RelativeLayout>
         </LinearLayout>

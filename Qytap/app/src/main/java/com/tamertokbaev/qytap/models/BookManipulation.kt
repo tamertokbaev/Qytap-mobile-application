@@ -1,5 +1,5 @@
 package com.tamertokbaev.qytap.models
 
 data class BookManipulation(
-    val bookId: Int
+    val book_id: Int?
 )
