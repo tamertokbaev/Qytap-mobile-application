@@ -8,16 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.helpers.BooksAdapter
+import com.tamertokbaev.qytap.helpers.ReviewsAdapter
 import com.tamertokbaev.qytap.models.*
 import com.tamertokbaev.qytap.services.BookFetchService
 import com.tamertokbaev.qytap.services.BookManipulationService
@@ -26,6 +25,8 @@ import com.tamertokbaev.qytap.services.ServiceBuilder
 
 class BookInnerFragment : Fragment() {
     private val destinationService = ServiceBuilder.buildService(BookManipulationService::class.java)
+    private val destinationServiceReviews = ServiceBuilder.buildService(BookFetchService::class.java)
+
     private var book: Book? = null
     private var bearerToken: String? = null
 
@@ -45,6 +46,7 @@ class BookInnerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val addBookToFav    = view.findViewById<MaterialButton>(R.id.add_to_fav_btn)
         val bookBuy         = view.findViewById<MaterialButton>(R.id.buy_btn)
+        val leaveReview     = view.findViewById<Button>(R.id.leave_button)
 
         val titleTextView   = view.findViewById<TextView>(R.id.book_title_inner)
         val authorTextView  = view.findViewById<TextView>(R.id.book_author_inner)
@@ -87,13 +89,17 @@ class BookInnerFragment : Fragment() {
         Picasso.get().load(this.book?.image).into(imageView)
 
         fetchStatusOfBook()
-
+        getReviews()
         addBookToFav.setOnClickListener {
             addBookToFavourites()
         }
 
         bookBuy.setOnClickListener{
             addBookToCart()
+        }
+
+        leaveReview.setOnClickListener{
+            leaveReview()
         }
         navigateBackListener(view)
     }
@@ -195,6 +201,65 @@ class BookInnerFragment : Fragment() {
                 }
             }
             override fun onFailure(call: retrofit2.Call<BookStatusResponse>, t: Throwable) {
+                Log.d("Exception", "Occurred exception: ${t}")
+                Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun getReviews(){
+        val requestCall = destinationServiceReviews.getReviews(this.book?.id!!)
+        val reviewsRecyclerView = view?.findViewById<RecyclerView>(R.id.reviews_inner)
+
+        requestCall.enqueue(object: retrofit2.Callback<ReviewResponse>{
+            override fun onResponse(call: retrofit2.Call<ReviewResponse>, response: retrofit2.Response<ReviewResponse>) {
+                Log.d("Response", "onResponse: ${response.body()}")
+                if (response.isSuccessful){
+                    if(response.body()?.message == "success"){
+                        reviewsRecyclerView?.apply {
+                            setHasFixedSize(true)
+                            layoutManager = GridLayoutManager(requireContext(),1)
+                            adapter = ReviewsAdapter(response.body()!!.reviews!!)
+                        }
+                    }
+                    else{
+                        Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Log.d("Request error", response.message())
+                    Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<ReviewResponse>, t: Throwable) {
+                Log.d("Exception", "Occurred exception: ${t}")
+                Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
+
+    private fun leaveReview(){
+        val requestCall = destinationServiceReviews.leaveReview(this.bearerToken!!,
+            Review(book_id = this.book?.id, content = view?.findViewById<EditText>(R.id.content_input)?.text.toString(), user_id = null, id = null))
+
+        requestCall.enqueue(object: retrofit2.Callback<ReviewResponse>{
+            override fun onResponse(call: retrofit2.Call<ReviewResponse>, response: retrofit2.Response<ReviewResponse>) {
+                Log.d("Response", "onResponse: ${response.body()}")
+                if (response.isSuccessful){
+                    if(response.body()?.message == "success"){
+                        getReviews()
+                        view?.findViewById<Button>(R.id.leave_button)?.text = ""
+                        Toast.makeText(requireContext(), "New review added!", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Log.d("Request error", response.message())
+                    Toast.makeText(requireContext(), "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<ReviewResponse>, t: Throwable) {
                 Log.d("Exception", "Occurred exception: ${t}")
                 Toast.makeText(requireContext(), "Something went wrong $t", Toast.LENGTH_SHORT).show()
             }
