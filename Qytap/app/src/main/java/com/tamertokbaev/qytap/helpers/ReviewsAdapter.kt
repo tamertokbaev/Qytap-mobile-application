@@ -40,7 +40,7 @@ class ReviewsAdapter(private val reviews: ArrayList<Review>): RecyclerView.Adapt
 
         // Binding fetched data to UI components from our fragment item!
         fun bind(review: Review) {
-            author.text = review.user_id.toString()
+            author.text = review.user?.name
             content.text = review.content
         }
     }

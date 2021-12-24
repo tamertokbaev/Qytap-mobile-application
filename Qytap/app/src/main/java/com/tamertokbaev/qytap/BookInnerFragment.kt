@@ -240,7 +240,7 @@ class BookInnerFragment : Fragment() {
 
     private fun leaveReview(){
         val requestCall = destinationServiceReviews.leaveReview(this.bearerToken!!,
-            Review(book_id = this.book?.id, content = view?.findViewById<EditText>(R.id.content_input)?.text.toString(), user_id = null, id = null))
+            Review(book_id = this.book?.id, content = view?.findViewById<EditText>(R.id.content_input)?.text.toString(), user_id = null, id = null, user = null))
 
         requestCall.enqueue(object: retrofit2.Callback<ReviewResponse>{
             override fun onResponse(call: retrofit2.Call<ReviewResponse>, response: retrofit2.Response<ReviewResponse>) {
