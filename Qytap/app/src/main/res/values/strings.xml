@@ -18,4 +18,5 @@
 
 Morbi felis sapien, aliquam nec sagittis vitae, scelerisque non nibh. Fusce eu porta erat. Duis tristique, odio sit amet mattis hendrerit, nibh purus rutrum erat, at ullamcorper neque eros ac orci. Donec sed tincidunt leo. Sed ac vulputate eros, vitae vehicula sapien. In at ipsum nec ligula tristique lacinia id et dolor. Cras quis urna scelerisque, egestas ligula ac, laoreet nisi. Duis tincidunt molestie arcu, vel tincidunt lacus euismod nec. Pellentesque id dolor condimentum est scelerisque facilisis sit amet nec ligula. Etiam convallis iaculis tellus eu condimentum. Aenean auctor euismod lacus, nec rhoncus orci blandit vitae. Fusce in luctus risus. Pellentesque diam nisi, mollis sed placerat sit amet, iaculis eget ex. Nunc pharetra vulputate nisi sed tristique. Nam sed elementum dolor, et scelerisque arcu. Donec dignissim fringilla urna.
     </string>
+    <string name="home_add_card">Add card</string>
 </resources>

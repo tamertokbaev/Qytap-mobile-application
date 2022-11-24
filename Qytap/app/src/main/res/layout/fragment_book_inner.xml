@@ -180,18 +180,19 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buy_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimaryLight"
-                    android:textColor="@color/color_primary"
-                    android:textSize="18sp"
-                    android:textFontWeight="800"
-                    android:text="Buy"
-                    android:textAlignment="viewStart"
                     android:drawableLeft="@drawable/ic_buy"
                     android:drawableTint="@color/color_primary"
+                    android:text="Cart"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_primary"
+                    android:textFontWeight="800"
+                    android:textSize="18sp"
                     app:cornerRadius="20dp" />
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/add_to_fav_btn"
