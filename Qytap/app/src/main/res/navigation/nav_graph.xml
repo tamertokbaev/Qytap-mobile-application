@@ -35,7 +35,15 @@
         android:id="@+id/navigation_home"
         android:name="com.tamertokbaev.qytap.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_card"
+            app:destination="@id/navigation_home_card"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_book_item"
@@ -52,5 +60,11 @@
         android:name="com.tamertokbaev.qytap.BookInnerFragment"
         android:label="fragment_book_inner"
         tools:layout="@layout/fragment_book_inner" />
+
+    <fragment
+        android:id="@+id/navigation_home_card"
+        android:name="com.tamertokbaev.qytap.HomeMyCardFragment"
+        android:label="fragment_home_my_card"
+        tools:layout="@layout/fragment_my_card" />
 
 </navigation>
