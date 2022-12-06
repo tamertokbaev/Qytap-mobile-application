@@ -16,4 +16,10 @@ interface CheckoutService {
     fun attachUserCard(
         @Query("token") token: String?, @Body card: UserCardPost
     ): Call<UserCardResponse>
+
+    @Headers("Content-Type: application/json")
+    @GET("user/checkout")
+    fun getUserCheckout(
+        @Query("token") token: String?
+    ): Call<UserCheckoutResponse>
 }

@@ -20,3 +20,8 @@ data class UserCardPost(
     val expire_date: String,
     val cvv: Int
 )
+
+data class UserCheckoutResponse(
+    val message: String,
+    val books: ArrayList<Book>
+)

@@ -14,4 +14,9 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
         android:title="Home"/>
+
+    <item
+        android:id="@+id/navigation_checkout"
+        android:icon="@drawable/ic_checkout"
+        android:title="Checkout"/>
 </menu>

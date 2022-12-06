@@ -48,7 +48,6 @@ class HomeMyCardFragment: Fragment() {
     private fun fetchCardInfo(view: View) {
         val preferences = view.context.getSharedPreferences(Constants.APP_SHARED_PREF_NAME, Context.MODE_PRIVATE)
         this.bearerToken = preferences.getString(Constants.APP_SHARED_USER_TOKEN_KEY, "")
-        Log.d("token", this.bearerToken.toString())
         //initiate the service
         val requestCall = destinationService.getUserCard(this.bearerToken);
         //make network call asynchronously
