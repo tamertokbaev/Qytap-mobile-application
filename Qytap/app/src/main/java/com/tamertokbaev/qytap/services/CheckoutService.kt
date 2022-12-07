@@ -22,4 +22,18 @@ interface CheckoutService {
     fun getUserCheckout(
         @Query("token") token: String?
     ): Call<UserCheckoutResponse>
+
+    @Headers("Content-Type: application/json")
+    @GET("user/increase")
+    fun increaseQuantityCart(
+        @Query("book_id") book_id: Int?,
+        @Query("token") token: String?
+    ): Call<UserCheckoutActionResponse>
+
+    @Headers("Content-Type: application/json")
+    @GET("user/decrease")
+    fun decreaseQuantityCart(
+        @Query("book_id") book_id: Int?,
+        @Query("token") token: String?
+    ): Call<UserCheckoutActionResponse>
 }

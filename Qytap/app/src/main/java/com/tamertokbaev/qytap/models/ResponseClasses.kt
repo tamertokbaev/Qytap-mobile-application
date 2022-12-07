@@ -25,3 +25,7 @@ data class UserCheckoutResponse(
     val message: String,
     val books: ArrayList<Book>
 )
+
+data class UserCheckoutActionResponse(
+    val message: String,
+)

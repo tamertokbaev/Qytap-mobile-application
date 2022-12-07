@@ -6,14 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.helpers.CheckoutAdapter
-import com.tamertokbaev.qytap.models.UserCardResponse
 import com.tamertokbaev.qytap.models.UserCheckoutResponse
 import com.tamertokbaev.qytap.services.CheckoutService
 import com.tamertokbaev.qytap.services.ServiceBuilder
@@ -56,10 +54,8 @@ class CheckoutFragment : Fragment() {
                 call: retrofit2.Call<UserCheckoutResponse>,
                 response: retrofit2.Response<UserCheckoutResponse>
             ) {
-                Log.d("Response", "onResponse: ${response.body()}")
                 if (response.isSuccessful) {
                     val checkoutInfo = response.body()!!
-                    Log.d("Checkout info", checkoutInfo.toString())
                     catalog_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(requireContext(),1)

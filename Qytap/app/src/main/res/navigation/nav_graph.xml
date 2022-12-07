@@ -49,6 +49,13 @@
         android:name="com.tamertokbaev.qytap.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_book_inner"
+            app:destination="@id/navigation_book_inner"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_book_item"
