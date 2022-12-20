@@ -23,7 +23,8 @@ data class UserCardPost(
 
 data class UserCheckoutResponse(
     val message: String,
-    val books: ArrayList<Book>
+    val books: ArrayList<Book>,
+    val totalSum: Double
 )
 
 data class UserCheckoutActionResponse(

@@ -16,7 +16,7 @@ import com.tamertokbaev.qytap.models.*
 import com.tamertokbaev.qytap.services.CheckoutService
 import com.tamertokbaev.qytap.services.ServiceBuilder
 
-class CheckoutAdapter(private val bookList: ArrayList<Book>) :
+class CheckoutAdapter(private val bookList: ArrayList<Book>, public var onItemClicked: (() -> Unit)) :
     RecyclerView.Adapter<CheckoutAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +33,7 @@ class CheckoutAdapter(private val bookList: ArrayList<Book>) :
         return bookList.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title = itemView.findViewById<TextView>(R.id.book_item_title)
         var itemGenre = itemView.findViewById<Chip>(R.id.book_item_genre)
         var imageBook = itemView.findViewById<ImageView>(R.id.book_item_image)
@@ -62,7 +62,7 @@ class CheckoutAdapter(private val bookList: ArrayList<Book>) :
                     override fun onResponse(call: retrofit2.Call<UserCheckoutActionResponse>, response: retrofit2.Response<UserCheckoutActionResponse>) {
                         Log.d("Response", "onResponse: ${response.body()}")
                         if (response.isSuccessful){
-
+                            onItemClicked()
                         }else{
                             Log.d("Request error", response.message())
                         }
@@ -86,7 +86,7 @@ class CheckoutAdapter(private val bookList: ArrayList<Book>) :
                     override fun onResponse(call: retrofit2.Call<UserCheckoutActionResponse>, response: retrofit2.Response<UserCheckoutActionResponse>) {
                         Log.d("Response", "onResponse: ${response.body()}")
                         if (response.isSuccessful){
-
+                            onItemClicked()
                         }else{
                             Log.d("Request error", response.message())
                         }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,7 +47,7 @@ class CheckoutFragment : Fragment() {
             Context.MODE_PRIVATE
         )
         this.bearerToken = preferences?.getString(Constants.APP_SHARED_USER_TOKEN_KEY, "")
-
+        val totalSum = view?.findViewById<TextView>(R.id.totalSum)
         val requestCall = destinationService.getUserCheckout(this.bearerToken);
 
         requestCall.enqueue(object : retrofit2.Callback<UserCheckoutResponse> {
@@ -56,12 +57,13 @@ class CheckoutFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val checkoutInfo = response.body()!!
+                    Log.d("Total sum", checkoutInfo.totalSum.toString())
                     catalog_recycler?.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(requireContext(),1)
-                        adapter = CheckoutAdapter(response.body()!!.books)
+                        adapter = CheckoutAdapter(response.body()!!.books) { -> getUserCheckout() }
                     }
-
+                    totalSum?.text = "Total sum: " + Math.round(checkoutInfo.totalSum).toString() + "$";
 
                 } else {
                     Log.d("Request error", response.message())
