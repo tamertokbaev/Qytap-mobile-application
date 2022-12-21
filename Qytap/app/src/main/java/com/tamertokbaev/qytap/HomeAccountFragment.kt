@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.squareup.picasso.Picasso
 import com.tamertokbaev.qytap.globals.Constants
 import com.tamertokbaev.qytap.models.ProfileImage
 import com.tamertokbaev.qytap.services.BookManipulationService
@@ -37,6 +38,7 @@ class HomeAccountFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_home_account, container, false)
         val welcomeTextView = rootView.findViewById<TextView>(R.id.home_welcome_text)
+        val imageView = rootView.findViewById<ImageView>(R.id.home_avatar)
 
         val sharedPreferences =
             activity?.getSharedPreferences(Constants.APP_SHARED_PREF_NAME, Context.MODE_PRIVATE)
@@ -45,7 +47,11 @@ class HomeAccountFragment : Fragment() {
             sharedPreferences?.getString(Constants.APP_SHARED_USER_EMAIL_KEY, "Empty email")
         val name: String? =
             sharedPreferences?.getString(Constants.APP_SHARED_USER_NAME_KEY, "Empty name")
-
+        val profile_photo: String? =
+            sharedPreferences?.getString(Constants.APP_SHARED_USER_PROFILE_PHOTO_KEY, null)
+        if (profile_photo != null) {
+            Picasso.get().load(profile_photo).into(imageView)
+        }
         welcomeTextView.text = "Welcome, ${name}"
 
 

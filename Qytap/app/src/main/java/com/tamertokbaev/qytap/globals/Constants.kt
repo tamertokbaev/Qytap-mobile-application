@@ -6,6 +6,7 @@ object Constants {
 
     const val APP_SHARED_USER_EMAIL_KEY = "email"
     const val APP_SHARED_USER_NAME_KEY = "name"
+    const val APP_SHARED_USER_PROFILE_PHOTO_KEY = "profile_photo"
     const val APP_SHARED_USER_TOKEN_KEY = "token"
 
     const val APP_SHARED_BOOK_ID_KEY = "book_id"

@@ -84,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
         ) {
             val destinationService = ServiceBuilder.buildService(AuthService::class.java)
             val requestCall =
-                destinationService.signUp(User(name = fullName, email = email, password = password))
+                destinationService.signUp(User(name = fullName, email = email, password = password, profile_photo = null))
             requestCall.enqueue(object : retrofit2.Callback<AuthResponse> {
                 override fun onResponse(
                     call: retrofit2.Call<AuthResponse>,
@@ -107,6 +107,7 @@ class SignUpActivity : AppCompatActivity() {
                             editor.apply {
                                 putString(Constants.APP_SHARED_USER_EMAIL_KEY, userData?.email)
                                 putString(Constants.APP_SHARED_USER_NAME_KEY, userData?.name)
+                                putString(Constants.APP_SHARED_USER_PROFILE_PHOTO_KEY, userData?.profile_photo)
                                 putString(Constants.APP_SHARED_USER_TOKEN_KEY, token?.access_token)
                             }.apply()
                             // Change activity on successful sign up
