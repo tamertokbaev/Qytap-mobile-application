@@ -30,3 +30,7 @@ data class UserCheckoutResponse(
 data class UserCheckoutActionResponse(
     val message: String,
 )
+
+data class ProfileImage(
+    val image: ByteArray
+)
